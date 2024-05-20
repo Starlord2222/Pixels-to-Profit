@@ -23,52 +23,29 @@ Download historical stock data and save them as Excel files (.xlsx).
 Place the Excel files in the same directory as the script.
 The script reads data for the following stocks:
 
-Apple (AAPL)
-AMD (AMD)
-Amazon (AMZN)
-IBM (IBM)
+Apple (AAPL) <br>
+AMD (AMD) <br>
+Amazon (AMZN) <br>
+IBM (IBM) <br>
 Oracle (ORCL)
 Microsoft (MSFT)
 Intel (INTC)
 Activision Blizzard (ATVI)
 NVIDIA (NVDA)
 
-Normalization and Feature Extraction
+### Normalization and Feature Extraction
 The normalize_data function normalizes stock data columns (Close, Volume, gap). The do_all function calculates features and normalizes them for each stock.
 
-python
-Copy code
-def normalize_data(df):
-    min_val = df.min()
-    max_val = df.max()
-    return (df - min_val) / (max_val - min_val)
-
-def do_all(df):
-    df['gap'] = df['Open '] - df['Close'].shift(1)
-    df = df.dropna()
-    df['Close'] = normalize_data(df['Close'])
-    df['Volume'] = normalize_data(df['Volume'])
-    df['gap'] = normalize_data(df['gap'])
-    return df
-Spatio-Temporal Data Generation
-Convert the normalized data into a 9x9x3 spatio-temporal representation and save them as images.
-
-python
-Copy code
+```py
 def prepare_for_stacking(name_df):
     selected_columns = name_df[['gap', 'Close', 'Volume']]
     arr = selected_columns.values
     arr = arr.reshape(-1, 9, 3)
     return arr
+```
+Then, save all the generated images inside a folder. 
 
-output_folder = "path/to/output/folder"
-for index, array in enumerate(final_array):
-    fig = plt.figure()
-    plt.imshow(array, interpolation="nearest", cmap="viridis")
-    plt.axis('off')
-    fig.savefig(Path(output_folder, f"9cross9_close_{index}.jpg"), bbox_inches='tight', pad_inches=0, transparent=True)
-    plt.close()
-CVaR Calculation
+### CVaR Calculation
 Calculate the portfolio returns and compute CVaR.
 
 python
