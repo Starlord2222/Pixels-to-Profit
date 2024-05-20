@@ -15,9 +15,9 @@ License
 Installation
 Before running the code, ensure you have the required packages installed. You can install them using pip:
 
-.. code-block:: console
+```py
 pip install numpy pandas matplotlib yfinance pandas_datareader yahoofinancials ta
-
+```
 Data Preparation
 Download historical stock data and save them as Excel files (.xlsx).
 Place the Excel files in the same directory as the script.
