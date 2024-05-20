@@ -27,11 +27,11 @@ Apple (AAPL) <br>
 AMD (AMD) <br>
 Amazon (AMZN) <br>
 IBM (IBM) <br>
-Oracle (ORCL)
-Microsoft (MSFT)
-Intel (INTC)
-Activision Blizzard (ATVI)
-NVIDIA (NVDA)
+Oracle (ORCL) <br>
+Microsoft (MSFT) <br>
+Intel (INTC) <br>
+Activision Blizzard (ATVI) <br>
+NVIDIA (NVDA) <br>
 
 ### Normalization and Feature Extraction
 The normalize_data function normalizes stock data columns (Close, Volume, gap). The do_all function calculates features and normalizes them for each stock.
@@ -48,19 +48,19 @@ Then, save all the generated images inside a folder.
 ### CVaR Calculation
 Calculate the portfolio returns and compute CVaR.
 
-python
-Copy code
+```py
 def historicalVaR(returns, alpha=5):
     return np.percentile(returns, alpha)
 
 def historicalCVaR(returns, alpha=5):
     belowVaR = returns <= historicalVaR(returns, alpha=alpha)
     return returns[belowVaR].mean()
-Distance Matrix and Bootstrapping
+```
+
+### Distance Matrix and Bootstrapping
 Compute distance matrices and perform bootstrap analysis to detect stock market crashes.
 
-python
-Copy code
+```py
 def bootstrap(matrix, event_list, iterations=1000):
     mid = matrix.shape[0] // 2
     training_data = matrix[:mid, :]
@@ -82,11 +82,11 @@ def bootstrap(matrix, event_list, iterations=1000):
         event_non_event_dist.append(np.mean(event_non_event_pair_scores))
     
     return event_event_dist, event_non_event_dist
-Testing and Evaluation
+```
+### Testing and Evaluation
 Classify new observations and evaluate the performance of the classifier.
 
-python
-Copy code
+```py
 def classify(new_observation, event_event_mean, event_event_variance, event_nonevent_mean, event_nonevent_variance):
     prob_event_event = calculate_prob(new_observation, event_event_mean, event_event_variance)
     prob_event_nonevent = calculate_prob(new_observation, event_nonevent_mean, event_nonevent_variance)
@@ -98,5 +98,6 @@ def test(testing_data, mid, event_index, nonevent_index, buffer, event_event_mea
     y_pred = [classify(dist, event_event_mean, event_event_variance, event_nonevent_mean, event_nonevent_variance) for dist in avg_distance]
     accuracy, precision, recall, f1 = evaluate(y_true, y_pred)
     return accuracy, precision, recall, f1
+```
 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
