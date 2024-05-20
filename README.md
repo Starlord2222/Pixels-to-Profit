@@ -1,6 +1,6 @@
 # Pixels-to-Profit
 
-This repository contains code to normalize stock market data, generate spatio-temporal data representations, compute the Conditional Value at Risk (CVaR), and perform bootstrap analysis for stock market crash detection.
+This repository contains codes for the study Pixels to Profit.
 
 Table of Contents
 Installation
@@ -11,16 +11,18 @@ CVaR Calculation
 Distance Matrix and Bootstrapping
 Testing and Evaluation
 Contributing
-License
-Installation
-Before running the code, ensure you have the required packages installed. You can install them using pip:
+
+
+### Installation
+Before running the code, please ensure you have installed the required packages. You can install them using pip:
 
 ```py
 pip install numpy pandas matplotlib yfinance pandas_datareader yahoofinancials ta
 ```
 Data Preparation
-Download historical stock data and save them as Excel files (.xlsx).
-Place the Excel files in the same directory as the script.
+Download historical stock data and save them as csv files (.csv).
+Place the csv files in the same directory as the script.
+
 The script reads data for the following stocks:
 
 Apple (AAPL) <br>
